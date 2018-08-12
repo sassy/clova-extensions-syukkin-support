@@ -22,7 +22,11 @@ const intentHandler = async responseHelper => {
                 SpeechBuilder.createSpeechText('もう一度確認してください。')
             );
             break;
+        case "Clova.CancelIntent":
         default:
+            responseHelper.setSimpleSpeech(
+                SpeechBuilder.createSpeechText(intent)
+            );
             break;
     }
 };
