@@ -12,20 +12,17 @@ const launchHandler = async responseHalper => {
 const intentHandler = async responseHelper => {
     const intent = responseHelper.getIntentName();
     switch(intent) {
-        case 'Clova.YesIntent':
+        case "Clova.YesIntent":
             responseHelper.setSimpleSpeech(
                 SpeechBuilder.createSpeechText('OKです')
             );
             break;
-        case 'Clova.NoIntent':
+        case "Clova.NoIntent":
             responseHelper.setSimpleSpeech(
                 SpeechBuilder.createSpeechText('もう一度確認してください。')
             );
             break;
         default:
-            responseHelper.setSimpleSpeech(
-                SpeechBuilder.createSpeechText('もう一度確認してください。')
-            );
             break;
     }
 };
