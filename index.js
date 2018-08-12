@@ -3,13 +3,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const APPLICATION_ID = process.env.APPLICATION_ID;
 
-const launchHandler = async responseHalper => {
+const launchHandler = responseHalper => {
     responseHalper.setSimpleSpeech(
         SpeechBuilder.createSpeechText('お出かけの確認を行います。照明は消しましたか？')
     );
 };
 
-const intentHandler = async responseHelper => {
+const intentHandler = responseHelper => {
     const intent = responseHelper.getIntentName();
     switch(intent) {
         case 'Clova.YesIntent':
@@ -27,7 +27,7 @@ const intentHandler = async responseHelper => {
     }
 };
 
-const sessionEndedHandler = async responseHelper => { };
+const sessionEndedHandler = responseHelper => { };
 
 const clovaHandler = Client
     .configureSkill()
