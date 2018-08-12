@@ -23,6 +23,9 @@ const intentHandler = async responseHelper => {
             );
             break;
         default:
+            responseHelper.setSimpleSpeech(
+                SpeechBuilder.createSpeechText('もう一度確認してください。')
+            );
             break;
     }
 };
