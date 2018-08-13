@@ -5,7 +5,7 @@ const APPLICATION_ID = process.env.APPLICATION_ID;
 
 const launchHandler = async responseHelper => {
     responseHelper.setSimpleSpeech(
-        SpeechBuilder.createSpeechText('お出かけの確認を行います。窓は閉めましたか？')
+        SpeechBuilder.createSpeechText('お出かけの確認を行います。はい、かいいえ、でお答えください。窓は閉めましたか？')
     );
     responseHelper.responseObject.sessionAttributes = {
         type: 1
