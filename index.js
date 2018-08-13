@@ -3,8 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const APPLICATION_ID = process.env.APPLICATION_ID;
 
-const launchHandler = async responseHalper => {
-    responseHalper.setSimpleSpeech(
+const launchHandler = async responseHelper => {
+    responseHelper.setSimpleSpeech(
         SpeechBuilder.createSpeechText('お出かけの確認を行います。照明は消しましたか？' + responseHelper.responseObject.sessionAttributes)
     );
 };
