@@ -18,7 +18,7 @@ const intentHandler = async responseHelper => {
                 responseHelper.setSimpleSpeech(
                     SpeechBuilder.createSpeechText('終了です。' + responseHelper.responseObject.sessionAttributes)
                 );
-                responseHelper.sessionEndedHandler();
+                responseHelper.endSession();
                 break;
             } else {
                 responseHelper.setSimpleSpeech(
