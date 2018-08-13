@@ -38,17 +38,17 @@ const intentHandler = async responseHelper => {
                     SpeechBuilder.createSpeechText('OKです。' + '冷暖房器具は消しましたか？')
                 );
                 responseHelper.responseObject.sessionAttributes = {
-                    type: 4
+                    type: 5
                 };
                 break;
-            } else if (type === 4) {
+            } else if (type === 5) {
                 responseHelper.setSimpleSpeech(
                     SpeechBuilder.createSpeechText('OKです。' + '財布は持ちましたか？')
                 );
                 responseHelper.responseObject.sessionAttributes = {
-                    type: 5
+                    type: 6
                 };
-            } else if (type === 5) {
+            } else if (type === 6) {
                 responseHelper.setSimpleSpeech(
                     SpeechBuilder.createSpeechText('OKです。' 
                         + '鍵をかけるのを忘れないでください。'
