@@ -14,9 +14,9 @@ const launchHandler = async responseHelper => {
 
 const intentHandler = async responseHelper => {
     const intent = responseHelper.getIntentName();
-    const type = responseHelper.responseObject.sessionAttributes.type;
     switch(intent) {
         case "Clova.YesIntent":
+            const type = responseHelper.responseObject.sessionAttributes.type;
             if (type === 1) {
                 responseHelper.setSimpleSpeech(
                     SpeechBuilder.createSpeechText('OKです。' + 'ガスの元栓は閉めましたか？')
