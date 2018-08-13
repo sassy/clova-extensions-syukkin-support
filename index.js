@@ -19,7 +19,7 @@ const intentHandler = async responseHelper => {
             const type = responseHelper.responseObject.sessionAttributes.type;
             if (type === 1) {
                 responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('OKです。' + 'ガスの元栓は閉めましたか？')
+                    SpeechBuilder.createSpeechText('OKです。' + '冷暖房器具は消しましたか？')
                 );
                 responseHelper.responseObject.sessionAttributes = {
                     type: 2
@@ -35,20 +35,21 @@ const intentHandler = async responseHelper => {
                 break;
             } else if (type === 3) {
                 responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('OKです。' + '冷暖房器具は消しましたか？')
+                    SpeechBuilder.createSpeechText('OKです。' + '財布は持ちましたか？')
+                );
+                responseHelper.responseObject.sessionAttributes = {
+                    type: 4
+                };
+                break;
+            } else if (type === 4) {
+                responseHelper.setSimpleSpeech(
+                    SpeechBuilder.createSpeechText('OKです。' + '財布は持ちましたか？')
                 );
                 responseHelper.responseObject.sessionAttributes = {
                     type: 5
                 };
                 break;
             } else if (type === 5) {
-                responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('OKです。' + '財布は持ちましたか？')
-                );
-                responseHelper.responseObject.sessionAttributes = {
-                    type: 6
-                };
-            } else if (type === 6) {
                 responseHelper.setSimpleSpeech(
                     SpeechBuilder.createSpeechText('OKです。' 
                         + '鍵をかけるのを忘れないでください。'
