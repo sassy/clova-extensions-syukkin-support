@@ -43,14 +43,6 @@ const intentHandler = async responseHelper => {
                 break;
             } else if (type === 4) {
                 responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('OKです。' + '財布は持ちましたか？')
-                );
-                responseHelper.responseObject.sessionAttributes = {
-                    type: 5
-                };
-                break;
-            } else if (type === 5) {
-                responseHelper.setSimpleSpeech(
                     SpeechBuilder.createSpeechText('OKです。' 
                         + '鍵をかけるのを忘れないでください。'
                         + 'いってらっしゃい!')
@@ -71,7 +63,7 @@ const intentHandler = async responseHelper => {
             responseHelper.setSimpleSpeech(
                 SpeechBuilder.createSpeechText('もう一度確認してください。')
             );
-            //responseHelper.endSession();
+            responseHelper.endSession();
             break;
         default:
             responseHelper.setSimpleSpeech(
