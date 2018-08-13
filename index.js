@@ -5,19 +5,30 @@ const APPLICATION_ID = process.env.APPLICATION_ID;
 
 const launchHandler = async responseHalper => {
     responseHalper.setSimpleSpeech(
-        SpeechBuilder.createSpeechText('お出かけの確認を行います。照明は消しましたか？')
+        SpeechBuilder.createSpeechText('お出かけの確認を行います。照明は消しましたか？' + responseHelper.responseObject.sessionAttributes)
     );
 };
 
 const intentHandler = async responseHelper => {
     const intent = responseHelper.getIntentName();
-    const type = responseHelper.responseObject.sessionAttributes;
+    const type = responseHelper.responseObject.sessionAttributes.type;
     switch(intent) {
         case "Clova.YesIntent":
-            responseHelper.setSimpleSpeech(
-                SpeechBuilder.createSpeechText('OKです。' + responseHelper.responseObject.sessionAttributes)
-            );
-            break;
+            if (type === 1) {
+                responseHelper.setSimpleSpeech(
+                    SpeechBuilder.createSpeechText('終了です。' + responseHelper.responseObject.sessionAttributes)
+                );
+                responseHelper.sessionEndedHandler();
+                break;
+            } else {
+                responseHelper.setSimpleSpeech(
+                    SpeechBuilder.createSpeechText('OKです。' + responseHelper.responseObject.sessionAttributes)
+                );
+                responseHelper.responseObject.sessionAttributes = {
+                    type: 1
+                };
+                break;
+            }
         case "Clova.NoIntent":
             responseHelper.setSimpleSpeech(
                 SpeechBuilder.createSpeechText('もう一度確認してください。')
