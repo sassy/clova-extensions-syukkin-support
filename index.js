@@ -70,7 +70,7 @@ const intentHandler = async responseHelper => {
             responseHelper.setSimpleSpeech(
                 SpeechBuilder.createSpeechText('もう一度確認してください。')
             );
-            responseHelper.endSession();
+            //responseHelper.endSession();
             break;
         default:
             responseHelper.setSimpleSpeech(
