@@ -7,15 +7,22 @@ const launchHandler = async responseHalper => {
     responseHalper.setSimpleSpeech(
         SpeechBuilder.createSpeechText('お出かけの確認を行います。照明は消しましたか？')
     );
+    responseHelper.responseObject.sessionAttributes = {
+        type : 0
+    };
 };
 
 const intentHandler = async responseHelper => {
     const intent = responseHelper.getIntentName();
+    const type = responseHelper.responseObject.sessionAttributes;
     switch(intent) {
         case "Clova.YesIntent":
             responseHelper.setSimpleSpeech(
-                SpeechBuilder.createSpeechText('OKです')
+                SpeechBuilder.createSpeechText('OKです。' + type)
             );
+            responseHelper.responseObject.sessionAttributes = {
+                type : 1
+            };
             break;
         case "Clova.NoIntent":
             responseHelper.setSimpleSpeech(
