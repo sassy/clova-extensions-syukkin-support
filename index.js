@@ -15,7 +15,7 @@ const intentHandler = async responseHelper => {
     switch(intent) {
         case "Clova.YesIntent":
             responseHelper.setSimpleSpeech(
-                SpeechBuilder.createSpeechText('OKです。' + responseHelper.responseObject)
+                SpeechBuilder.createSpeechText('OKです。' + responseHelper.responseObject.sessionAttributes)
             );
             break;
         case "Clova.NoIntent":
