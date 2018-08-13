@@ -5,8 +5,11 @@ const APPLICATION_ID = process.env.APPLICATION_ID;
 
 const launchHandler = async responseHelper => {
     responseHelper.setSimpleSpeech(
-        SpeechBuilder.createSpeechText('お出かけの確認を行います。照明は消しましたか？' + responseHelper.responseObject.sessionAttributes)
+        SpeechBuilder.createSpeechText('お出かけの確認を行います。窓は閉めましたか？')
     );
+    responseHelper.responseObject.sessionAttributes = {
+        type: 1
+    };
 };
 
 const intentHandler = async responseHelper => {
@@ -16,13 +19,47 @@ const intentHandler = async responseHelper => {
         case "Clova.YesIntent":
             if (type === 1) {
                 responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('終了です。' + responseHelper.responseObject.sessionAttributes)
+                    SpeechBuilder.createSpeechText('OKです。' + 'ガスの元栓は閉めましたか？')
+                );
+                responseHelper.responseObject.sessionAttributes = {
+                    type: 2
+                };
+                break;
+            } else if (type === 2) {
+                responseHelper.setSimpleSpeech(
+                    SpeechBuilder.createSpeechText('OKです。' + '照明は消しましたか？')
+                );
+                responseHelper.responseObject.sessionAttributes = {
+                    type: 3
+                };
+                break;
+            } else if (type === 3) {
+                responseHelper.setSimpleSpeech(
+                    SpeechBuilder.createSpeechText('OKです。' + '冷暖房器具は消しましたか？')
+                );
+                responseHelper.responseObject.sessionAttributes = {
+                    type: 4
+                };
+                break;
+            } else if (type === 4) {
+                responseHelper.setSimpleSpeech(
+                    SpeechBuilder.createSpeechText('OKです。' + '財布は持ちましたか？')
+                );
+                responseHelper.responseObject.sessionAttributes = {
+                    type: 5
+                };
+            } else if (type === 5) {
+                responseHelper.setSimpleSpeech(
+                    SpeechBuilder.createSpeechText('OKです。' 
+                        + '鍵をかけるのを忘れないでください。'
+                        + 'いってらっしゃい!')
                 );
                 responseHelper.endSession();
                 break;
             } else {
+                /* ここには絶対こないはず */
                 responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('OKです。' + responseHelper.responseObject.sessionAttributes)
+                    SpeechBuilder.createSpeechText('もう一度最初から確認します。窓は閉めましたか？')
                 );
                 responseHelper.responseObject.sessionAttributes = {
                     type: 1
@@ -33,12 +70,15 @@ const intentHandler = async responseHelper => {
             responseHelper.setSimpleSpeech(
                 SpeechBuilder.createSpeechText('もう一度確認してください。')
             );
+            responseHelper.endSession();
             break;
-        case "Clova.CancelIntent":
         default:
             responseHelper.setSimpleSpeech(
-                SpeechBuilder.createSpeechText(intent)
+                SpeechBuilder.createSpeechText('もう一度最初から確認します。窓は閉めましたか？')
             );
+            responseHelper.responseObject.sessionAttributes = {
+                type: 1
+            };
             break;
     }
 };
