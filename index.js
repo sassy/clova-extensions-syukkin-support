@@ -87,13 +87,15 @@ const clovaHandler = Client
 
 const app = new express();
 const clovaMiddleware = Middleware({ applicationId: APPLICATION_ID });
-app.post('/clova', clovaMiddleware, clovaHandler);
+// app.post('/clova', clovaMiddleware, clovaHandler);
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server running on ${port}`);
-});
-    
-// const awsServerlessExpress = require('aws-serverless-express');
-// const server = awsServerlessExpress.createServer(app);
-// exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context);
+// const port = process.env.PORT || 3000;
+// app.listen(port, () => {
+//     console.log(`Server running on ${port}`);
+// });
+
+app.post('/mySyukkin', clovaMiddleware, clovaHandler);
+
+const awsServerlessExpress = require('aws-serverless-express');
+const server = awsServerlessExpress.createServer(app);
+exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context);
