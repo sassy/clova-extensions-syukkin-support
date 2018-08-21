@@ -42,11 +42,13 @@ const intentHandler = async responseHelper => {
                 };
                 break;
             } else if (type === 4) {
-                responseHelper.setSimpleSpeech(
+                const speeches = [
                     SpeechBuilder.createSpeechText('OKです。' 
                         + '鍵をかけるのを忘れないでください。'
-                        + 'いってらっしゃい!')
-                );
+                        + 'いってらっしゃい!'),
+                    SpeechBuilder.createSpeechUrl('https://s3-ap-northeast-1.amazonaws.com/syukkin/odekake.mp3')
+                ];
+                responseHelper.setSpeechList(speeches);
                 responseHelper.endSession();
                 break;
             } else {
