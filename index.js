@@ -18,25 +18,25 @@ const intentHandler = async responseHelper => {
         case "Clova.YesIntent":
             const type = responseHelper.responseObject.sessionAttributes.type;
             if (type === 1) {
-                responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('OKです。' + '冷暖房器具は消しましたか？')
-                );
+                const speech = SpeechBuilder.createSpeechText('OKです。' + '冷暖房器具は消しましたか？');
+                responseHelper.setSimpleSpeech(speech);
+                responseHelper.setSimpleSpeech(speech, true);
                 responseHelper.responseObject.sessionAttributes = {
                     type: 2
                 };
                 break;
             } else if (type === 2) {
-                responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('OKです。' + '照明は消しましたか？')
-                );
+                const speech = SpeechBuilder.createSpeechText('OKです。' + '照明は消しましたか？');
+                responseHelper.setSimpleSpeech(speech);
+                responseHelper.setSimpleSpeech(speech, true);
                 responseHelper.responseObject.sessionAttributes = {
                     type: 3
                 };
                 break;
             } else if (type === 3) {
-                responseHelper.setSimpleSpeech(
-                    SpeechBuilder.createSpeechText('OKです。' + '財布は持ちましたか？')
-                );
+                const speech = SpeechBuilder.createSpeechText('OKです。' + '財布は持ちましたか？');
+                responseHelper.setSimpleSpeech(speech);
+                responseHelper.setSimpleSpeech(speech, true);
                 responseHelper.responseObject.sessionAttributes = {
                     type: 4
                 };
@@ -69,10 +69,10 @@ const intentHandler = async responseHelper => {
             break;
         default:
             responseHelper.setSimpleSpeech(
-                SpeechBuilder.createSpeechText('もう一度最初から確認します。窓は閉めましたか？')
+                SpeechBuilder.createSpeechText('はい、か、いいえでお答えください。')
             );
             responseHelper.responseObject.sessionAttributes = {
-                type: 1
+                type: responseHelper.responseObject.sessionAttributes.type
             };
             break;
     }
