@@ -12,6 +12,6 @@
     "@line/clova-cek-sdk-nodejs": "^1.0.1",
     "aws-serverless-express": "^3.2.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.17.1"
   }
 }
